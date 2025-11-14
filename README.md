@@ -28,7 +28,128 @@ El proyecto incluye deduplicación de columnas, enriquecimiento de datos (años,
 - 📈 **Power BI Ready** - Conexión directa con SQL Warehouse
 - ⚡ **Delta Lake** - ACID transactions y time travel capabilities
 
+## 🏛️ Arquitectura
 
+### Flujo de Datos
+
+```
+📄 CSV (Raw Data)
+    ↓
+🥉 Bronze Layer (Ingesta sin transformación)
+    ↓
+🥈 Silver Layer (Limpieza + Modelo Dimensional)
+    ↓
+🥇 Gold Layer (Agregaciones de Negocio)
+    ↓
+📊 Power BI (Visualización)
+```
+
+### 📦 Capas del Pipeline
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+#### 🥉 Bronze Layer  
+**Propósito**: Zona de aterrizaje  
+
+**Tablas**:  
+- `movies_raw`  
+- `ratings_raw`  
+
+**Características**:  
+- ✅ Datos tal cual vienen del CSV  
+- ✅ Timestamp de ingesta (`ingestion_date`)  
+- ✅ Sin transformaciones ni validaciones  
+- ✅ Preserva estructura original  
+
+</td>
+<td width="33%" valign="top">
+
+#### 🥈 Silver Layer  
+**Propósito**: Limpieza y enriquecimiento  
+
+**Tablas**:  
+- `movies_transformed`  
+- `ratings_transformed`  
+
+**Características**:  
+- ✅ Normalización de columnas  
+- ✅ Eliminación de duplicados (ej.: `movieId` repetido)  
+- ✅ Columnas derivadas (`year`, `title_clean`, `rating_date`)  
+- ✅ UDFs para clasificaciones (`rating_categoria`, `complejidad_genero`)  
+- ✅ Join entre movies y ratings para construir dataset unificado  
+
+</td>
+<td width="33%" valign="top">
+
+#### 🥇 Gold Layer  
+**Propósito**: Analytics-ready  
+
+**Tablas**:  
+- `movies_insights`  
+- `ratings_insights` (o tabla agregada final)  
+
+**Características**:  
+- ✅ Pre-agregados (ej.: años de antigüedad, métricas por película)  
+- ✅ Listo para BI (Power BI, dashboards)  
+- ✅ Optimizado para performance  
+- ✅ KPIs y métricas listas para análisis avanzado  
+
+</td>
+</tr>
+</table>
+
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+coffee-shop-etl/
+│
+├── 📂 .github/
+│   └── 📂 workflows/
+│       └── 📄 databricks-deploy.yml    # Pipeline CI/CD
+│
+├── 📂 proceso/
+│   ├── 📄 1-Creacion sql         # Creación de esquema
+│   ├── 🐍 2-Ingest_movies.py            # Bronze Layer
+│   ├── 🐍 3-Ingest_rating.py            # Bronze Layer
+│   ├── 🐍 3-Transform.py                # Silver Layer
+│   └── 🐍 4-Load.py                     # Gold Layer
+│
+└── 📄 README.md
+```
+
+---
+
+## 🛠️ Tecnologías
+
+<div align="center">
+
+| Tecnología | Propósito |
+|:----------:|:----------|
+| ![Databricks](https://img.shields.io/badge/Azure_Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white) | Motor de procesamiento distribuido Spark |
+| ![Delta Lake](https://img.shields.io/badge/Delta_Lake-00ADD8?style=flat-square&logo=delta&logoColor=white) | Storage layer con ACID transactions |
+| ![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=flat-square&logo=apache-spark&logoColor=white) | Framework de transformación de datos |
+| ![ADLS](https://img.shields.io/badge/ADLS_Gen2-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white) | Data Lake para almacenamiento persistente |
+| ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white) | Automatización CI/CD |
+| ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=flat-square&logo=power-bi&logoColor=black) | Business Intelligence y visualización |
+
+</div>
+
+---
+## ⚙️ Requisitos Previos
+
+- ☁️ Cuenta de Azure con acceso a Databricks
+- 💻 Workspace de Databricks configurado
+- 🖥️ Cluster activo (nombre: `CLUSTER COFFEE SHOP`)
+- 🐙 Cuenta de GitHub con permisos de administrador
+- 📦 Azure Data Lake Storage Gen2 configurado
+- 📊 Power BI Desktop (opcional para visualización)
+
+---
 
 
 
