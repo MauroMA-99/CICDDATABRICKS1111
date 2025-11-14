@@ -54,8 +54,8 @@ El proyecto incluye deduplicación de columnas, enriquecimiento de datos (años,
 **Propósito**: Zona de aterrizaje  
 
 **Tablas**:  
-- `movies_raw`  
-- `ratings_raw`  
+- `movies`  
+- `ratings`  
 
 **Características**:  
 - ✅ Datos tal cual vienen del CSV  
@@ -70,8 +70,7 @@ El proyecto incluye deduplicación de columnas, enriquecimiento de datos (años,
 **Propósito**: Limpieza y enriquecimiento  
 
 **Tablas**:  
-- `movies_transformed`  
-- `ratings_transformed`  
+- `movies_ratings_silver`
 
 **Características**:  
 - ✅ Normalización de columnas  
@@ -88,7 +87,6 @@ El proyecto incluye deduplicación de columnas, enriquecimiento de datos (años,
 
 **Tablas**:  
 - `movies_insights`  
-- `ratings_insights` (o tabla agregada final)  
 
 **Características**:  
 - ✅ Pre-agregados (ej.: años de antigüedad, métricas por película)  
