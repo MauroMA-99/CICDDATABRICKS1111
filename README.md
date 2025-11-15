@@ -110,12 +110,33 @@ coffee-shop-etl/
 │   └── 📂 workflows/
 │       └── 📄 databricks-deploy.yml    # Pipeline CI/CD
 │
+├── 📂 dashboard/
+│   ├── 📷 Dashboard_powerBi.png        # Imagen dashboard
+│   └── 📄 Dashboard_AnalisisDePeliculas.pbix     # Archivo Power BI
+│
+├── 📂 reversion/
+│   └── 🐍 Reversion.py     # REVOKES
+│
+├── 📂 .github/workflows/
+│    └── 📄 deploy-notebook.yml       # Archivo yaml
+│
+├── 📂 seguridad/
+│   └── 🐍 Permisos.py                # Grants
+│
+├── 📂 scripts/
+│   └── 📄 CreacionSQL.py             # CReacion del catalog, schemas, etc.
+│
 ├── 📂 proceso/
-│   ├── 📄 1-Creacion sql         # Creación de esquema
-│   ├── 🐍 2-Ingest_movies.py            # Bronze Layer
-│   ├── 🐍 3-Ingest_rating.py            # Bronze Layer
-│   ├── 🐍 3-Transform.py                # Silver Layer
-│   └── 🐍 4-Load.py                     # Gold Layer
+│   ├── 🐍 Ingest_movies.py            # Bronze Layer
+│   ├── 🐍 Ingest_rating.py            # Bronze Layer
+│   ├── 🐍 Transform.py                # Silver Layer
+│   ├── 🐍 Load.py                     # Gold Layer
+│   └── 🐍 DeltaSharing.py             # Exportacion de la tabla movies_insight
+│
+├── 📂 certificaiones/
+│   ├── 📄 DatabricksFundamentals.jpeg                # Fundamentos de Databricks
+│   ├── 📄 GenerativeAIFundamentals.jpg               # Fundamentos de AI Generativa
+│   └── 📄             # 
 │
 └── 📄 README.md
 ```
