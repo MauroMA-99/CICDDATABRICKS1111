@@ -35,6 +35,8 @@ El proyecto incluye deduplicación de columnas, enriquecimiento de datos (años,
 ```
 📄 CSV (Raw Data)
     ↓
+🛢️ Raw (contenedor)
+    ↓
 🥉 Bronze Layer (Ingesta sin transformación)
     ↓
 🥈 Silver Layer (Limpieza + Modelo Dimensional)
@@ -170,6 +172,9 @@ coffee-shop-etl/
 
 ---
 
+## 🚀 Instalación y Configuración
+
+### 1️⃣ Creacion del grupo de recursos
 
 
 
